@@ -20,8 +20,6 @@ else
   config_found=false;
 fi
 
-#remote_hosts+=("Quit")
-
 if [ "$config_found" = true ]; then
   PS3='Select connection '
   select host in "${remote_hosts[@]}"
