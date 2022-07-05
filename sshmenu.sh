@@ -3,7 +3,7 @@
 # Tool to list and select ssh connections set in the ~/.ssh/config file.
 
 input="$HOME/.ssh/config"
-remote_hosts=()
+remote_hosts=("Quit")
 config_found=true
 
 if [[ -e $input ]]; then
@@ -20,7 +20,7 @@ else
   config_found=false;
 fi
 
-remote_hosts+=("Quit")
+#remote_hosts+=("Quit")
 
 if [ "$config_found" = true ]; then
   PS3='Select connection '
