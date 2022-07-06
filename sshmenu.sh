@@ -27,10 +27,17 @@ if [ "$config_found" = true ]; then
     if [ "$host" = "Quit" ]
       then break
     else
-      tmux new-session -d -s "$host";
-      tmux send-keys -t "$host" "ssh $host" Enter;
-      tmux attach -t "$host"
-      break; 
+      if [ "$TERM_PROGRAM" = tmux ]; then
+        tmux new-window;
+        tmux rename-window "$host";
+        tmux send-keys -t "$host" "ssh $host" Enter;
+        break;
+      else
+        tmux new-session -d -s "$host";
+        tmux send-keys -t "$host" "ssh $host" Enter;
+        tmux attach -t "$host"
+        break; 
+      fi
     fi
   done  
 fi
